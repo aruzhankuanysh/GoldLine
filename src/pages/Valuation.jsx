@@ -9,47 +9,71 @@ export default function Valuation({ onNotify }) {
   // ОБЩИЙ СТЕЙТ ДЛЯ ЗОЛОТА
   const [goldProb, setGoldProb] = useState("585");
   const [goldWeight, setGoldWeight] = useState("13.1");
-  const [goldCondition, setGoldCondition] = useState("Хорошее");
+  const [goldCondition, setGoldCondition] =
+    useState("Хорошее");
 
   // ОБЩИЙ СТЕЙТ ДЛЯ ТЕХНИКИ
-  const [techBrand, setTechBrand] = useState("Apple");
-  const [techPrice, setTechPrice] = useState("450000");
-  const [techDefects, setTechDefects] = useState({
-    scratches: false,
-    screenChips: false,
-    batteryBad: false,
-    noBox: false,
-    repaired: false,
-  });
+  const [techBrand, setTechBrand] =
+    useState("Apple");
+
+  const [techPrice, setTechPrice] =
+    useState("");
+
+  // Теперь это массив выбранных дефектов
+  const [techDefects, setTechDefects] =
+    useState([]);
 
   return (
     <>
       <div className="page-head">
         <div>
           <h1>Быстрая оценка</h1>
-          <p>Предварительный расчет суммы залога для клиента</p>
+          <p>
+            Предварительный расчет суммы залога
+            для клиента
+          </p>
         </div>
       </div>
 
       <div className="valuation-layout">
-        {/* ЛЕВАЯ КОЛОНКА: КАРТОЧКА ФОРМЫ */}
+        {/* ЛЕВАЯ КОЛОНКА */}
         <div className="card valuation-form">
           <h3>Что оцениваем?</h3>
 
-          <div className="type-switch" style={{ marginBottom: "1rem" }}>
+          <div
+            className="type-switch"
+            style={{
+              marginBottom: "1rem",
+            }}
+          >
             <button
-              className={type === "gold" ? "selected" : ""}
-              onClick={() => setType("gold")}
+              className={
+                type === "gold"
+                  ? "selected"
+                  : ""
+              }
+              onClick={() =>
+                setType("gold")
+              }
               type="button"
             >
-              <Gem size={19} /> Золото
+              <Gem size={19} />
+              Золото
             </button>
+
             <button
-              className={type === "tech" ? "selected" : ""}
-              onClick={() => setType("tech")}
+              className={
+                type === "tech"
+                  ? "selected"
+                  : ""
+              }
+              onClick={() =>
+                setType("tech")
+              }
               type="button"
             >
-              <Smartphone size={19} /> Техника
+              <Smartphone size={19} />
+              Техника
             </button>
           </div>
 
@@ -62,7 +86,9 @@ export default function Valuation({ onNotify }) {
               weight={goldWeight}
               setWeight={setGoldWeight}
               condition={goldCondition}
-              setCondition={setGoldCondition}
+              setCondition={
+                setGoldCondition
+              }
             />
           ) : (
             <TechValuation
@@ -71,14 +97,18 @@ export default function Valuation({ onNotify }) {
               brand={techBrand}
               setBrand={setTechBrand}
               marketPrice={techPrice}
-              setMarketPrice={setTechPrice}
+              setMarketPrice={
+                setTechPrice
+              }
               defects={techDefects}
-              setDefects={setTechDefects}
+              setDefects={
+                setTechDefects
+              }
             />
           )}
         </div>
 
-        {/* ПРАВАЯ КОЛОНКА: КАРТОЧКА РЕЗУЛЬТАТА */}
+        {/* ПРАВАЯ КОЛОНКА */}
         {type === "gold" ? (
           <GoldValuation
             type="result"
